@@ -1,0 +1,62 @@
+// Visual Studio 실행 옵션
+{
+    "version": "2.0.0",
+    "runner": "terminal",
+    "type": "shell",
+    "echoCommand": true,
+    "presentation": {
+        "reveal": "always"
+    },
+    "tasks": [
+        // [컴파일 Tasks] - 단축키 : Ctrl + Alt + c
+        // (C++ 컴파일)
+        {
+            "group": "build",
+            "label": "save and compile for C++",
+            "command": "g++",
+            "args": [
+                "${workspaceFolder}/main.cpp", // main.cpp의 경로
+                "${workspaceFolder}/src/*.cpp", // src 소스 파일 경로
+                "-o",
+                "${workspaceFolder}/.build/${fileBasenameNoExtension}", // 빌드 결과 파일 저장 경로
+                // "-v", // gcc 컴파일 과정 출력
+                "-O2", // 최적화
+                "-W", // 모호한 코드 경고
+                "-Wall" // 모호한 코드 경고
+            ],
+            //컴파일시 에러를 편집기에 반영
+            //참고:   https://code.visualstudio.com/docs/editor/tasks#_defining-a-problem-matcher
+            "problemMatcher": {
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        // [실행 Tasks] - 단축키 : Ctrl + Alt + r
+        // (바이너리 실행(Ubuntu))
+        // {
+        //     "group": "test",
+        //     "label": "execute",
+        //     "command": "${fileDirname}/${fileBasenameNoExtension}"
+        // }
+        // (바이너리 실행(Windows))
+        {
+            "group": "test",
+            "label": "execute",
+            "command": "cmd",
+            "args": [
+                "/C",
+                "${workspaceFolder}/.build/${fileBasenameNoExtension}"
+            ]
+        }
+    ]
+}
