@@ -23,12 +23,9 @@
 	실행 : Ctrl + Alt + r
 */
 
-#include "src/template.h"
+#include "src/win_socket_server.h"
 
 int main()
 {
-	std::cout << ns_template::Template::sampleInt << std::endl;
-	ns_template::Template::sampleFunc("테스트1", "test2");
-
-	return 0;
+	return ns_win_socket_server::WinSocketServer().startSocketServer(9091);
 }

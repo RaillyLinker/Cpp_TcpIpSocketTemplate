@@ -8,6 +8,8 @@
 #include <string>
 #include <iostream>
 
+// !!!using namespace 설정!!!
+
 // !!!namespace 선언 - ns_{파일명}과 동일!!!
 namespace ns_template
 {
@@ -21,6 +23,11 @@ namespace ns_template
 	 */
 	class Template
 	{
+		// !!![생성/소멸자 선언]!!!
+	public:
+		Template();
+		~Template();
+
 		// !!![변수 선언]!!!
 	public:
 		/**
@@ -42,11 +49,8 @@ namespace ns_template
 		 * @date 2023-12-26
 		 * @version 1.0.0
 		 */
-		static bool sampleFunc(const std::string &sampleParam1, const std::string &sampleParam2);
+		bool sampleFunc(const std::string &sampleParam1, const std::string &sampleParam2);
 	};
 }
-
-// !!!using namespace 설정!!!
-using namespace ns_template;
 
 #endif
